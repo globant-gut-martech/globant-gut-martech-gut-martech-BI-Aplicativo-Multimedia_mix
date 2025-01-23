@@ -2,9 +2,9 @@ import pandas as pd
 import streamlit as st
 
 
-df_permutaciones = pd.read_csv("datasets/permutationIndex.csv")
+df_permutaciones = pd.read_csv("MultimediaReach/datasets/permutationIndex.csv")
 
-df_frecuencias = pd.read_csv("datasets/frecuencias.csv")
+df_frecuencias = pd.read_csv("MultimediaReach/datasets/frecuencias.csv")
 
 
 
