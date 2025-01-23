@@ -1,1 +1,3 @@
-# globant-gut-martech-gut-martech-BI-Aplicativo-Multimedia_mix
+# Multimedia reach
+
+Aplicación de streamlit para multimedia reach
