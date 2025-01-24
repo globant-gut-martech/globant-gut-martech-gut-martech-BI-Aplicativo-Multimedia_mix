@@ -95,7 +95,7 @@ def plot_preprocessing(df: pd.DataFrame, alcance : str):
     for index,medio in enumerate(df['Medio']):
         df[medio] = 0
         df[medio].iloc[index:]=df['Porcentaje por medio'].iloc[index]
-    
+    #Reshape df
     df = df.loc[:, 'Medios Acumulados':]
     df = df.set_index('Medios Acumulados').stack(level=-1)
     df = df.reset_index()

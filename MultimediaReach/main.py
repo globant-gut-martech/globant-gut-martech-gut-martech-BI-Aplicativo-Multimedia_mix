@@ -134,7 +134,7 @@ if grafica:
     with tab1:
         colors = px.colors.qualitative.Prism
         df2 = st.session_state['start_df'][['Medio', 'Alcance Multimedia Standart']]
-        st.write(df2)
+        st.write
         df2 = plot_preprocessing(df2, 'Alcance Multimedia Standart')
         fig = px.bar(df2, y="Medios acumulados", x = "Porcentaje", color="Medio",
                     title='Alcance Multimedia Standart', orientation='h', text_auto=True,
