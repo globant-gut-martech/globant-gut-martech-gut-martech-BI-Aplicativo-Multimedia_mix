@@ -103,15 +103,21 @@ edited_df = st.data_editor(st.session_state['start_df'],
                            column_order=("Medio", "Porcentaje", "Alcance Multimedia Standart", "Alcance Multimedia Ajustado"),
                            num_rows="dynamic")
 
-if (st.session_state['start_df'] is not None) and ((not st.session_state['start_df'].equals(edited_df)) or ( st.session_state['selected_freq']!=selected_freq) or ( st.session_state['selected_target']!=selected_target)):
+if edited_df.empty:  
+    st.stop()
+elif edited_df.iloc[0,0] != None and edited_df.iloc[0,1] == None:
     st.session_state['start_df'] = edited_df
-    st.session_state['selected_freq'] = selected_freq
-    st.session_state['selected_target'] = selected_target
-    st.session_state['start_df'] = first_row_calculation(st.session_state['start_df'], st.session_state['selected_freq'])
-    st.session_state['start_df'] = alcance_standart_calculation(st.session_state['start_df'], st.session_state['selected_freq'])
-    st.session_state['start_df'] = index_dup(st.session_state['start_df'], st.session_state['selected_target'])
-    st.session_state['start_df'] = alcance_ajustado_calculation(st.session_state['start_df'], st.session_state['selected_freq'])
-    st.rerun()
+    st.stop()
+else:
+    if (st.session_state['start_df'] is not None) and ((not st.session_state['start_df'].equals(edited_df)) or ( st.session_state['selected_freq']!=selected_freq) or ( st.session_state['selected_target']!=selected_target)):
+        st.session_state['start_df'] = edited_df
+        st.session_state['selected_freq'] = selected_freq
+        st.session_state['selected_target'] = selected_target
+        st.session_state['start_df'] = first_row_calculation(st.session_state['start_df'], st.session_state['selected_freq'])
+        st.session_state['start_df'] = alcance_standart_calculation(st.session_state['start_df'], st.session_state['selected_freq'])
+        st.session_state['start_df'] = index_dup(st.session_state['start_df'], st.session_state['selected_target'])
+        st.session_state['start_df'] = alcance_ajustado_calculation(st.session_state['start_df'], st.session_state['selected_freq'])
+        st.rerun()
 
 
 grafica = st.checkbox("Mostrar graficas")
@@ -128,6 +134,7 @@ if grafica:
     with tab1:
         colors = px.colors.qualitative.Prism
         df2 = st.session_state['start_df'][['Medio', 'Alcance Multimedia Standart']]
+        st.write(df2)
         df2 = plot_preprocessing(df2, 'Alcance Multimedia Standart')
         fig = px.bar(df2, y="Medios acumulados", x = "Porcentaje", color="Medio",
                     title='Alcance Multimedia Standart', orientation='h', text_auto=True,

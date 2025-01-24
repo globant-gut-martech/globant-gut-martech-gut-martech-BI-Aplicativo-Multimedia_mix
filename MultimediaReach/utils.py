@@ -85,17 +85,17 @@ def plot_preprocessing(df: pd.DataFrame, alcance : str):
     df['Porcentaje por medio'].iloc[0] = df[alcance].iloc[0]
     #Initialize the 'Medio acumulado' column
     df['Medios Acumulados'] = ''
-    # Loop through each row to create the accumulated string
-    for i in range(len(df)):
-        if i == 0:
-            df.at[i, 'Medios Acumulados'] = df.at[i, 'Medio']  # First row just takes the current Medio
-        else:
-            df.at[i, 'Medios Acumulados'] = df.at[i-1, 'Medios Acumulados'] + '+' + df.at[i, 'Medio']
+     # Create the accumulated string
+    df['Medios Acumulados'].iloc[0] = df['Medio'].iloc[0] 
+    # Loop through each row to create the accumulated string from second row onwards
+    for i in range(1,len(df)):
+        df['Medios Acumulados'].iloc[i] = df['Medios Acumulados'].iloc[i-1] + '+' + df['Medio'].iloc[i]
 
-    #df['Medios Acumulados'].iloc[0] = df['Medio'].iloc[0]
+    #Calculate the percentage of each medio
     for index,medio in enumerate(df['Medio']):
         df[medio] = 0
-        df[medio].iloc[index:len(df)]=df['Porcentaje por medio'].iloc[index]
+        df[medio].iloc[index:]=df['Porcentaje por medio'].iloc[index]
+    
     df = df.loc[:, 'Medios Acumulados':]
     df = df.set_index('Medios Acumulados').stack(level=-1)
     df = df.reset_index()
