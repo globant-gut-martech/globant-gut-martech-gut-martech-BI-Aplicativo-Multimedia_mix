@@ -1,12 +1,14 @@
 import pandas as pd
 import streamlit as st
 
+@st.cache_data 
+def load_data(url):
+    df = pd.read_csv(url)
+    return df
 
-df_permutaciones = pd.read_csv("MultimediaReach/datasets/permutationIndex.csv")
 
-df_frecuencias = pd.read_csv("MultimediaReach/datasets/frecuencias.csv")
-
-
+df_permutaciones = load_data("MultimediaReach/datasets/permutationIndex.csv")
+df_frecuencias = load_data("MultimediaReach/datasets/frecuencias.csv")
 
 def get_permutation_index(perm):
     try:
