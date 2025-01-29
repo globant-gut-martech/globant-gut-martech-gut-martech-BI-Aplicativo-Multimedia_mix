@@ -54,7 +54,7 @@ start_df= pd.DataFrame({"Medio":["Tv Nacional", "Radio", "Youtube"] ,
                          "Indice de duplicación": [None, None, None] })
 #First row calculations
 start_df = first_row_calculation(start_df, selected_freq)
-#Next rows calcularion
+#Next rows calculations
 start_df = alcance_standart_calculation(start_df, selected_freq)
 start_df = index_dup(start_df, selected_target)
 start_df = alcance_ajustado_calculation(start_df, selected_freq)
@@ -115,7 +115,7 @@ elif edited_df.iloc[0,0] != None and edited_df.iloc[0,1] == None:
     st.session_state['start_df'] = edited_df
     st.stop()
 else:
-    if (st.session_state['start_df'] is not None) and ((not st.session_state['start_df'].equals(edited_df)) or ( st.session_state['selected_freq']!=selected_freq) or ( st.session_state['selected_target']!=selected_target)):
+    if (st.session_state['start_df'] is not None) and ((not st.session_state['start_df'][['Medio','Porcentaje']].equals(edited_df[['Medio','Porcentaje']])) or ( st.session_state['selected_freq']!=selected_freq) or ( st.session_state['selected_target']!=selected_target)):
         st.session_state['start_df'] = edited_df
         st.session_state['selected_freq'] = selected_freq
         st.session_state['selected_target'] = selected_target
