@@ -7,8 +7,8 @@ def load_data(url):
     return df
 
 
-df_permutaciones = load_data("datasets/permutationIndex.csv")
-df_frecuencias = load_data("datasets/frecuencias.csv")
+df_permutaciones = load_data("MultimediaReach/datasets/permutationIndex.csv")
+df_frecuencias = load_data("MultimediaReach/datasets/frecuencias.csv")
 
 def get_permutation_index(perm):
     try:
