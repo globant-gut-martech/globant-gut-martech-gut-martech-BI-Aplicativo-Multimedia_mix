@@ -9,7 +9,13 @@ import numpy as np
 from utils import  (first_row_calculation, alcance_standart_calculation, index_dup,
                      alcance_ajustado_calculation, plot_preprocessing,create_annotations)
 
-
+#Page Config
+st.set_page_config(
+    page_title="Inicio",
+    page_icon= "📊",
+    layout="wide",
+    initial_sidebar_state="expanded",
+)
 st. title("Multimedia Reach")
 #Listas con los targets de referencia
 targets = ["Personas", "Amas", "HM +25", "HM +25 nse 3-6", "HM +25 nse 2-3", 

@@ -114,6 +114,9 @@ def create_annotations(start_df: pd.DataFrame, df2:pd.DataFrame, column: str):
                                 text=str(round(row[column],2))+"%", 
                                 font = dict(size=10, family="Arial Black", color = "black"),
                                 #textangle=-90,
-                                   showarrow=False))
+                                showarrow=False,
+                                yanchor = "top",
+                                #yshift = -40/len(start_df),
+                                xanchor = "center"))
         j+=len(start_df)
     return annotations
